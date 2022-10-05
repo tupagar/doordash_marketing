@@ -1,5 +1,9 @@
 # Problem Statement - A RESTFul API for the Doordash Drive merchant to upload customer phone numbers data to the server
 
+## Author
+TUSHAR TUKARAM PAGAR
+Email: tupagar@gmail.com
+
 ## Steps to Run
 ### Prerequisites:
 - Java 11
