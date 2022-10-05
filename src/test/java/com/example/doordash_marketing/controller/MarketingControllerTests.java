@@ -53,7 +53,8 @@ class MarketingControllerTests {
             public void doWithRequest(ClientHttpRequest request) throws IOException {
                 request.getHeaders().setAccept(Collections.singletonList(MediaType.ALL));
                 request.getHeaders().setContentType(MediaType.APPLICATION_JSON);
-                request.getBody().write("{\"raw_phone_numbers\": \"(Home).  415-415-4155 (Cell) 415-123-4567\"}".getBytes());
+                request.getBody()
+                        .write("{\"raw_phone_numbers\": \"(Home).  415-415-4155 (Cell) 415-123-4567\"}".getBytes());
             }
         };
 
@@ -98,7 +99,8 @@ class MarketingControllerTests {
             public void doWithRequest(ClientHttpRequest request) throws IOException {
                 request.getHeaders().setAccept(Collections.singletonList(MediaType.ALL));
                 request.getHeaders().setContentType(MediaType.APPLICATION_JSON);
-                request.getBody().write("{\"raw_phone_numbers\": \"(ddddd).  415-415-4155 (Cell) sss-123-4567\"}".getBytes());
+                request.getBody()
+                        .write("{\"raw_phone_numbers\": \"(ddddd).  415-415-4155 (Cell) sss-123-4567\"}".getBytes());
             }
         };
 
@@ -106,5 +108,29 @@ class MarketingControllerTests {
                 new URI("http://localhost:" + port + "/phone_numbers"),
                 HttpMethod.POST, requestCallback, responseExtractor);
         Assert.assertEquals(200, output);
+    }
+
+    @Test
+    public void whenInvalidGetRequest() throws URISyntaxException {
+        ResponseExtractor<Integer> responseExtractor = new ResponseExtractor<Integer>() {
+            @Override
+            public Integer extractData(ClientHttpResponse response) throws IOException {
+                return response.getRawStatusCode();
+            }
+        };
+        RequestCallback requestCallback = new RequestCallback() {
+            @Override
+            public void doWithRequest(ClientHttpRequest request) throws IOException {
+                request.getHeaders().setAccept(Collections.singletonList(MediaType.ALL));
+                request.getHeaders().setContentType(MediaType.APPLICATION_JSON);
+                request.getBody()
+                        .write("{\"raw_phone_numbers\": \"(Home).  415-415-4155 (Cell) 415-123-4567\"}".getBytes());
+            }
+        };
+
+        int output = this.restTemplate.execute(
+                new URI("http://localhost:" + port + "/phone_numbers"),
+                HttpMethod.GET, requestCallback, responseExtractor);
+        Assert.assertEquals(405, output);
     }
 }

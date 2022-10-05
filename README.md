@@ -18,6 +18,9 @@ java -jar executable/doordash_marketing-0.0.1-SNAPSHOT.jar
 ./gradlew test
 ```
 
+### Postman collection
+- Sample Postman call is included in "<project-root>/postman" directory to try out manual test API call
+
 ### How to clean the H2 DB for fresh runs?
 ```shell
 ./gradlew deleteDB
