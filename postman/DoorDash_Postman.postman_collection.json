@@ -1,0 +1,38 @@
+{
+	"info": {
+		"_postman_id": "b77523f8-c145-4ab3-9552-db21f350992f",
+		"name": "DoorDash_Postman",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "186569"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/phone_numbers",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"raw_phone_numbers\": \"(Home).  415-415-4155 (Cell) 415-123-4567   (home) 111-222-1111\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/phone_numbers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"phone_numbers"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
